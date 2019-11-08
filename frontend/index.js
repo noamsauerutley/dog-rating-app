@@ -26,9 +26,7 @@ let allDogs = async () => {
 
             // add rating to modal
             let modalRating = document.createElement('h3')
-            if (dog.rating){
-                modalRating.innerText = `Rating: ${dog.rating}`
-            } else {modalRating.innerText = "Rating: 10"}
+            // modalRating.innerText = `Rating: ${dog.rating}`
 
             // add rate dog button to modal
             let addRating = document.createElement('h4')
@@ -41,7 +39,7 @@ let allDogs = async () => {
                 let submitButton = document.createElement("button")
                 submitButton.innerText = "Submit Rating"
                 submitButton.addEventListener("click", ()=>{
-                    dog.rating = ratingInput.value
+                    // dog.rating.value = addRating.value
                 })
                 modalContent.append(submitButton)
 
