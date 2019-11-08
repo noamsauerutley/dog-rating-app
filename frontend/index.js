@@ -26,7 +26,8 @@ let allDogs = async () => {
 
             // add rating to modal
             let modalRating = document.createElement('h3')
-            // modalRating.innerText = `Rating: ${dog.rating}`
+            console.log(dog.rating)
+            modalRating.innerText = `Rating: ${dog.rating.value.toFixed(2)}`
 
             // add rate dog button to modal
             let addRating = document.createElement('h4')

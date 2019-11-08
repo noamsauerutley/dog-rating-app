@@ -1,7 +1,10 @@
 class DogsController < ApplicationController
     def index
-        render json: Dog.all
+        dogs = Dog.all
+        render json: dogs.to_json(:include => {
+      :rating => {:only => [:dog_id, :value]}})
     end
+
 end
 
 
