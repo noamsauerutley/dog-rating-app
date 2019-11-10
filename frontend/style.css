@@ -29,7 +29,7 @@ body {
 }
 
 .modal-img {
-  height: 80%;
+  max-height: 80%;
   border: 5px #a2a8d3 solid;
     border-radius: 10%;
 }

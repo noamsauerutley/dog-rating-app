@@ -68,7 +68,7 @@ function addEventListenerToDogLi(dog, dogLi) {
         addRating.innerText = "Rate This Dog"
 
         //add event listener to addRating
-        addEventListenerToAddRating(addRating, dog)
+        addEventListenerToAddRating(addRating, modalContent, modalRating, dog)
 
         // append content to modal 
         modalContent.append(modalImg)
@@ -79,7 +79,7 @@ function addEventListenerToDogLi(dog, dogLi) {
     })
 }
 
-function addEventListenerToAddRating(addRating, dog) {
+function addEventListenerToAddRating(addRating, modalContent, modalRating, dog) {
     addRating.addEventListener("click", () => {
         let ratingInput = document.createElement("input")
         modalContent.append(ratingInput)
@@ -87,10 +87,22 @@ function addEventListenerToAddRating(addRating, dog) {
         let submitButton = document.createElement("button")
         submitButton.innerText = "Submit Rating"
         submitButton.addEventListener("click", () => {
-            dog.rating.value = ratingInput.value
-            modalRating.innerText = `Rating: ${ratingInput.value}/10`
-            modalContent.append(modalRating)
-            console.log(dog.rating.value)
+            let newRating = ratingInput.value
+            fetch(`http://localhost:3000/ratings/${dog.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    value: newRating
+                })
+            })
+            .then(r => r.json())
+            .then(resObj => {
+                dog.rating.value = resObj.value
+                modalRating.innerText = `Rating: ${resObj.value}/10`
+            })
         })
         modalContent.append(submitButton)
     })
