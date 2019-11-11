@@ -88,7 +88,7 @@ function addEventListenerToAddRating(addRating, modalContent, modalRating, dog) 
         submitButton.innerText = "Submit Rating"
         submitButton.addEventListener("click", () => {
             let newRating = ratingInput.value
-            fetch(`http://localhost:3000/ratings/${dog.id}`, {
+            fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
