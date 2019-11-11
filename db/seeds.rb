@@ -10,4 +10,8 @@ Dog.all.each do |dog|
     Rating.create(value:rand(10..20), dog_id: dog.id)
 end
 
+Dog.all.each do |dog|
+    Comment.create(author:Faker::Name.first_name, content:Faker::TvShows::Buffy.quote, dog_id: dog.id)
+end
+
 puts "Seeded!"
