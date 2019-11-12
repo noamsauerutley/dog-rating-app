@@ -201,6 +201,19 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     commentsUl.append(newCommentLi)
 }
 
-let reduceFunc = (sum, rating) => {
-   return sum + rating.value
-}
+    let topDogs = async () => {
+        let response = await fetch("http://localhost:3000/dogs")
+        let dogs = await response.json()
+        let sortedDogs = dogs.sort((a, b) => (a.rating.value > b.rating.value) ? 1 : -1)
+
+        sortedDogs.forEach((dog) => {
+        //     //create dog function
+        //     createDog(dog)
+        console.log(dog)
+        })
+    }
+
+    let topDogsButton = document.querySelector("#top-dogs")
+    topDogsButton.addEventListener("click",() => {topDogs()})
+
+
