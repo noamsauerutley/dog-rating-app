@@ -23,29 +23,6 @@ let allDogs = async () => {
 
 allDogs()
 
-// function postTweetQuery(){
-//     fetch("https://api.twitter.com/1.1/search/tweets.json?q=weratedogs", {
-//         "method": "POST",
-//         "headers": {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json"
-//         },
-//         "body": {
-//             "consumerKey": "P0dteBxCalUPFgj8CDaWL1vMY",
-//             "accessTokenKey": "1192570030753488896-JISnCekhNa5ZAFtjh2ehJU9xbtdwaN",
-//             "consumerSecret": "hURUMa0hOU2IOUCQGqZKiefvGObe2s6fOR58Tu3Re8kj1h5CJO",
-//             "accessTokenSecret": "7Bw0OR01gFxrPMMGpj5spnwcPZhoMwdt5Iu8GvbqOfCnD"
-//         }
-//     })
-//         .then(response => {
-//             console.log(response);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         });
-// }
-// postTweetQuery();
-
 
 function createDog(dog) {
     // create dog element
