@@ -13,7 +13,7 @@
 parsedDogs = JSON.parse(File.read('cuteemergency.json'))
 parsedDogs2 = JSON.parse(File.read('cutestpetdogs.json'))
 parsedDogs3 = JSON.parse(File.read('thedaiiypuppy.json'))
-
+parsedDogs4 = JSON.parse(File.read('dog_feelings.json'))
 
 newDogs = parsedDogs.select do |dog|
     dog.extend Hashie::Extensions::DeepFind
