@@ -1,14 +1,14 @@
-const dogListUl = document.querySelector("#dog-list-ul")
+const dogListDiv = document.querySelector("#dog-list")
 const dogModal = document.querySelector(".modal")
 const span = document.getElementsByClassName("close")[0];
 
-span.onclick = function() {
+span.onclick = function () {
     dogModal.style.display = "none";
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == dogModal) {
-      dogModal.style.display = "none";  
+        dogModal.style.display = "none";
     }
 }
 
@@ -25,102 +25,97 @@ allDogs()
 
 
 function createDog(dog) {
-    // create dog element
-    let dogLi = document.createElement("li")
-
-    //add event listener to dog li
-    addEventListenerToDogLi(dog, dogLi)
-
     // create dog image
     let dogImg = document.createElement("img")
     dogImg.className = "dog-img"
     dogImg.src = dog.image_url
 
+    addEventListenerToDogImg(dog, dogImg)
+
     // append
-    dogLi.append(dogImg)
-    // dogLi.append(dogRating)
-    dogListUl.append(dogLi)
+    dogListDiv.append(dogImg)
+
 }
 
 
 
 
-function addEventListenerToDogLi(dog, dogLi) {
-    dogLi.addEventListener("click", () => {
+function addEventListenerToDogImg(dog, dogImg) {
+    dogImg.addEventListener("click", () => {
         showDog(dog)
     })
 }
 
 let showDog = (dog) => {
-          // get modal
-          let modalContent = document.querySelector("#dog-modal")
+    // get modal
+    let modalContent = document.querySelector("#dog-modal")
 
-          // clear previous content
-          let child = modalContent.lastElementChild;
-          while (child) {
-              modalContent.removeChild(child);
-              child = modalContent.lastElementChild;
-          }
-          // add dog img to modal
-          let modalImg = document.createElement("img")
-          modalImg.setAttribute("class", "modal-img")
-          modalImg.src = dog.image_url
-  
-          // add rating to modal
-          let modalRating = document.createElement('h3')
-          modalRating.innerText = `Rating: ${dog.rating.value}/10`
-  
-          // add rate dog link to modal
-          let addRating = document.createElement('h4')
-          addRating.innerText = "Rate This Dog"
-  
-          //add event listener to addRating
-          addEventListenerToAddRating(addRating, modalContent, modalRating, dog)
-  
-          // add comment link to modal
-          let addComment = document.createElement('h4')
-          addComment.innerText = "Leave A Comment"
-  
-          // add event listener to addComment
-           addComment.addEventListener("click", () => {
-               newComment(dog, modalContent)
-           })
-           
-  
-          // create comments display
-          let commentsUl = document.createElement('ul')
-          commentsUl.setAttribute("id", "comments-ul")
-          let commentsHeader = document.createElement('h3')
-          commentsHeader.innerText = "Comments"
-          comments = dog.comments
-          comments.forEach(comment => {
-              // create li
-              let commentLi = document.createElement('li')
-              commentLi.innerText = `${comment.author} said: ${comment.content}`
-      
-              // append
-              commentsUl.appendChild(commentLi)
-          })
-  
-  
-          // append content to modal 
-  
-          modalContent.append(modalImg)
-          modalContent.append(modalRating)
-          modalContent.append(addRating)
-          modalContent.append(addComment)
-          modalContent.append(commentsUl)
-  
-          dogModal.style.display = "block";
+    // clear previous content
+    let child = modalContent.lastElementChild;
+    while (child) {
+        modalContent.removeChild(child);
+        child = modalContent.lastElementChild;
+    }
+    // add dog img to modal
+    let modalImg = document.createElement("img")
+    modalImg.setAttribute("class", "modal-img")
+    modalImg.src = dog.image_url
+
+    // add rating to modal
+    let modalRating = document.createElement('h3')
+    modalRating.innerText = `Rating: ${dog.rating.value}/10`
+
+    // add rate dog link to modal
+    let addRating = document.createElement('h4')
+    addRating.innerText = "Rate This Dog"
+
+    //add event listener to addRating
+    addEventListenerToAddRating(addRating, modalContent, modalRating, dog)
+
+    // add comment link to modal
+    let addComment = document.createElement('h4')
+    addComment.innerText = "Leave A Comment"
+
+    // add event listener to addComment
+    addComment.addEventListener("click", () => {
+        newComment(dog, modalContent)
+    })
+
+
+    // create comments display
+    let commentsUl = document.createElement('ul')
+    commentsUl.setAttribute("id", "comments-ul")
+    let commentsHeader = document.createElement('h3')
+    commentsHeader.innerText = "Comments"
+    comments = dog.comments
+    comments.forEach(comment => {
+        // create li
+        let commentLi = document.createElement('li')
+        commentLi.innerText = `${comment.author} said: ${comment.content}`
+
+        // append
+        commentsUl.appendChild(commentLi)
+    })
+
+
+    // append content to modal 
+
+    modalContent.append(modalImg)
+    modalContent.append(modalRating)
+    modalContent.append(addRating)
+    modalContent.append(addComment)
+    modalContent.append(commentsUl)
+
+    dogModal.style.display = "block";
 }
 
 let newComment = (dog, modalContent) => {
     // clear modal content
     let child = modalContent.lastElementChild;
-        while (child) {
-            modalContent.removeChild(child);
-            child = modalContent.lastElementChild;
-        }
+    while (child) {
+        modalContent.removeChild(child);
+        child = modalContent.lastElementChild;
+    }
 
     // load comment form
     // load author input
@@ -130,7 +125,7 @@ let newComment = (dog, modalContent) => {
     let authorInput = document.createElement("input")
     author.append(authorLabel)
     author.append(authorInput)
-    
+
     // load content input
     let content = document.createElement("div")
     let contentLabel = document.createElement("label")
@@ -141,7 +136,7 @@ let newComment = (dog, modalContent) => {
     // load submit button
     let submitButton = document.createElement("button")
     submitButton.innerText = "Submit Comment"
-    submitButton.addEventListener ("click", () => {
+    submitButton.addEventListener("click", () => {
         createNewComment(dog, modalContent, authorInput, contentInput)
     })
     modalContent.append(author)
@@ -168,11 +163,11 @@ function addEventListenerToAddRating(addRating, modalContent, modalRating, dog) 
                     value: newRating
                 })
             })
-            .then(r => r.json())
-            .then(resObj => {
-                dog.rating.value = resObj.value
-                modalRating.innerText = `Rating: ${resObj.value}/10`
-            })
+                .then(r => r.json())
+                .then(resObj => {
+                    dog.rating.value = resObj.value
+                    modalRating.innerText = `Rating: ${resObj.value}/10`
+                })
         })
         modalRating.append(submitButton)
     })
