@@ -16,9 +16,28 @@ body {
     /* margin-top: 50px; */
 }
 
-.navigation {
+/* .navigation {
   text-align: center;
   font-weight: bold;
+} */
+
+#logo {
+  font-weight: bold;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  margin-top: 16px;
+  margin-right: 45px;
+  color: #113f67;
+font-family: 'Patua One', cursive;
+}
+
+.nav-bar-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
 }
 
 .dog-img {
@@ -56,9 +75,11 @@ body {
     margin: 10% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 70%; /* Could be more or less, depending on screen size */
     height: 90%;
     text-align: center;
+    /* max-height: calc(100vh - 210px); */
+    overflow-y: auto;
   }
   
   /* The Close Button */
@@ -74,4 +95,10 @@ body {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  #comments-ul {
+    list-style-type: none;
+    margin: auto;
+    max-width: 70%;
   }
