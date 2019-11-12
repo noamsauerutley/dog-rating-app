@@ -157,7 +157,7 @@ function addEventListenerToAddRating(addRating, modalContent, modalRating, dog) 
         let submitButton = document.createElement("button")
         submitButton.innerText = "Submit Rating"
         submitButton.addEventListener("click", () => {
-            let newRating = ratingInput.value
+            let newRating = (parseInt(dog.rating.value) + parseInt(ratingInput.value))/2
             fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
                 method: "PATCH",
                 headers: {
@@ -170,8 +170,7 @@ function addEventListenerToAddRating(addRating, modalContent, modalRating, dog) 
             })
             .then(r => r.json())
             .then(resObj => {
-                dog.rating.value = resObj.value
-                modalRating.innerText = `Rating: ${resObj.value}/10`
+                modalRating.innerText = `${resObj.value}/10`
             })
         })
         modalRating.append(submitButton)
@@ -200,4 +199,8 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     newCommentLi.innerText = `${createdComment.author} said: ${createdComment.content}`
     let commentsUl = document.querySelector("#comments-ul")
     commentsUl.append(newCommentLi)
+}
+
+let reduceFunc = (sum, rating) => {
+   return sum + rating.value
 }
