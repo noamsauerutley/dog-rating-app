@@ -204,11 +204,17 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let topDogs = async () => {
         let response = await fetch("http://localhost:3000/dogs")
         let dogs = await response.json()
-        let sortedDogs = dogs.sort((a, b) => (a.rating.value > b.rating.value) ? 1 : -1)
+        let sortedDogs = dogs.sort((a, b) => (a.rating.value < b.rating.value) ? 1 : -1)
+
+        let child = dogListUl.lastElementChild;
+          while (child) {
+              dogListUl.removeChild(child);
+              child = dogListUl.lastElementChild;
+          }
 
         sortedDogs.forEach((dog) => {
         //     //create dog function
-        //     createDog(dog)
+        createDog(dog)
         console.log(dog)
         })
     }
