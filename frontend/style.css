@@ -32,16 +32,19 @@ font-family: 'Patua One', cursive;
 
 .dog-img {
   width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* max-height: 300px; */
-    border: 5px #a2a8d3 solid;
-    margin: 5px;
+  height: 100%;
+  object-fit: cover;
+  /* max-height: 300px; */
+  border: 5px #a2a8d3 solid;
+  margin: 5px;
 }
 
 .modal-img {
-  max-height: 70%;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
   border: 5px #a2a8d3 solid;
+  float: left;
 }
 
 /* The Modal (background) */
@@ -63,7 +66,7 @@ font-family: 'Patua One', cursive;
   /* Modal Content/Box */
   .modal-content {
     background-color: #e7eaf6;
-    margin: 10% auto; /* 15% from the top and centered */
+    margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 70%; /* Could be more or less, depending on screen size */
@@ -90,6 +93,29 @@ font-family: 'Patua One', cursive;
 
   #comments-ul {
     list-style-type: none;
-    margin: auto;
     max-width: 70%;
+    padding-left: 15%;
+    padding-right: 1%;
+    margin-left: 40%;
+    text-align: left;
   }
+
+  #comments-ul li {
+    padding: 2%;
+  }
+
+  .comment-form input, textarea, .rating-input {
+    width: 25%;
+    margin: 2px;
+  }
+
+  button {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    background-color: #a2a8d3;
+    color: #e7eaf6;
+    height: 23px;
+    width: 25%;
+    text-decoration: none;
+    font-size: 15px;
+  }
+
