@@ -53,4 +53,8 @@ Dog.all.each do |dog|
     Comment.create(author:Faker::Name.first_name, content:Faker::TvShows::Buffy.quote, dog_id: dog.id)
 end
 
+Dog.all.each do |dog|
+    Like.create(dog_id:dog.id)
+end
+
 puts "Seeded!"

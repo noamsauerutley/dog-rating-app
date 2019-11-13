@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_172219) do
+ActiveRecord::Schema.define(version: 2019_11_13_220543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 2019_11_11_172219) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "dog_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dog_id"], name: "index_likes_on_dog_id"
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.float "value"
     t.bigint "dog_id", null: false
@@ -39,5 +46,6 @@ ActiveRecord::Schema.define(version: 2019_11_11_172219) do
   end
 
   add_foreign_key "comments", "dogs"
+  add_foreign_key "likes", "dogs"
   add_foreign_key "ratings", "dogs"
 end
