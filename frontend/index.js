@@ -129,20 +129,11 @@ let showDog = (dog) => {
         let lineBreak3 = document.createElement("br")
 
 
-<<<<<<< HEAD
-    modalContent.append(modalImg)
-    modalContent.append(likeButton)
-    modalContent.append(modalRating)
-    modalContent.append(addRating)
-    modalContent.append(addComment)
-    modalContent.append(commentsUl)
-=======
         modalContent.append(modalImg, modalRating, ratingInput, lineBreak1, submitButton, lineBreak2, lineBreak3)
         // modalContent.append(addRating)
         // modalContent.append(addComment)
         newComment(dog, modalContent)
         modalContent.append(commentsUl)
->>>>>>> staging
 
     dogModal.style.display = "block";
 }
