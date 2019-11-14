@@ -51,6 +51,19 @@ function addEventListenerToDogImg(dog, dogImg) {
         showDog(dog)
     })
 }
+let newLike = async (dog) => {
+    let response = await fetch('http://localhost:3000/likes', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            dog_id: dog.id
+        })
+    })
+    let postedLike = await response.json()
+}  
 
 let showDog = (dog) => {
     // get modal
@@ -74,16 +87,17 @@ let showDog = (dog) => {
     likeButton.setAttribute("class",'like-button')
     likeButton.innerText = "♥️"
 
-    // likeButton.innerHTML = '<img src="https://i.pinimg.com/originals/ef/b8/26/efb82626a64587cb1cb8cd8914d01fb6.gif"/>'
     likeButton.addEventListener("click", () => {
         likeButton.classList.add('animated', 'heartBeat')
         newLike(dog)
         dogLikes += 1
         modalLikes.innerText = `Likes: ${dogLikes}`
+        likeButton.addEventListener('animationend', function () { likeButton.classList.remove('animated', 'heartBeat') })
     })
+    
     let modalLikes = document.createElement("h3")
     modalLikes.setAttribute("class", "modal-likes")
-    modalLikes.innerText = `Likes:${dogLikes}`
+    modalLikes.innerText = `Likes: ${dogLikes}`
 
     // add rating to modal
     let modalRating = document.createElement('h3')
@@ -97,6 +111,7 @@ let showDog = (dog) => {
     ratingInput.setAttribute("class", "rating-input")
     
     let submitButton = document.createElement("button")
+    submitButton.setAttribute("class", "submit-button")
     submitButton.innerText = "Rate This Dog"
     
     
@@ -169,6 +184,7 @@ let newComment = (dog, modalContent) => {
     contentInput.placeholder = "Your Comment"
     // load submit button
     let submitButton = document.createElement("button")
+    submitButton.setAttribute("class", "submit-button")
     submitButton.innerText = "Leave a Comment"
     submitButton.addEventListener("click", (event) => {
         event.preventDefault()
@@ -271,19 +287,7 @@ homeButton.addEventListener("click",() => {allDogs()})
     let mostCommentedDogsButton = document.querySelector("#commented-dogs")
     mostCommentedDogsButton.addEventListener("click",() => {mostCommentedDogs()})
 
-    let newLike = async (dog) => {
-        let response = await fetch('http://localhost:3000/likes', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                dog_id: dog.id
-            })
-        })
-        let postedLike = await response.json()
-    }  
+
     
     let mostPopularDogs = async () => {
         let response = await fetch("http://localhost:3000/dogs")
@@ -301,3 +305,22 @@ homeButton.addEventListener("click",() => {allDogs()})
    let mostPopularDogsButton = document.querySelector("#popular-dogs")
    mostPopularDogsButton.addEventListener("click", () => {mostPopularDogs()})
 
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () { scrollFunction() };
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
