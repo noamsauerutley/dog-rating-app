@@ -16,19 +16,29 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  margin-top: 16px;
-  margin-right: 45px;
+  margin-top: 8px;
+  margin-right: 75px;
+  margin-left: 0;
   color: #113f67;
 font-family: 'Patua One', cursive;
 }
 
 .nav-bar-list {
   list-style-type: none;
-  display: flex;
-  justify-content: space-evenly;
-  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+      /* grid-auto-rows: minmax(25vw, auto); */
+    /* grid-gap: 15px; */
+  /* justify-content: space-evenly; */
+   padding-left: 80px;
   margin: 0;
 }
+
+/* .nav-bar-list h1, h3 {
+   width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
 
 .dog-img {
   width: 100%;
@@ -120,11 +130,19 @@ font-family: 'Patua One', cursive;
   }
 
   #like-button {
+    /* color: #a2a8d3; */
+    background: transparent;
+    font-size: 40px;
     height: 60px;
     width: 60px;
-    border-radius: 50%;
+    border: none;
+    /* border-radius: 50%; */
   }
   
 #like-button:focus{
     outline: 3px dashed #a2a8d3;
   }
+
+#heart {
+  
+}

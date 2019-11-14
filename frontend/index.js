@@ -72,8 +72,11 @@ let showDog = (dog) => {
     let likeButton = document.createElement("button")
     likeButton.setAttribute("id",'like-button') 
     likeButton.setAttribute("class",'like-button')
-    likeButton.innerText = "Like Me!"
+    likeButton.innerText = "♥️"
+
+    // likeButton.innerHTML = '<img src="https://i.pinimg.com/originals/ef/b8/26/efb82626a64587cb1cb8cd8914d01fb6.gif"/>'
     likeButton.addEventListener("click", () => {
+        likeButton.classList.add('animated', 'heartBeat')
         newLike(dog)
         dogLikes += 1
         modalLikes.innerText = `Likes: ${dogLikes}`
