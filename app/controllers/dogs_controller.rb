@@ -3,7 +3,8 @@ class DogsController < ApplicationController
         dogs = Dog.all
         render json: dogs.to_json(:include => {
       :rating => {:only => [:id, :dog_id, :value]},
-      :comments => {:only => [:id, :dog_id, :author, :content]}
+      :comments => {:only => [:id, :dog_id, :author, :content]},
+      :likes => {:only => [:id, :dog_id]}
     })
     end
 
@@ -11,7 +12,8 @@ class DogsController < ApplicationController
       dog = Dog.find(params[:id])
       render json: dogs.to_json(:include => {
         :rating => {:only => [:id, :dog_id, :value]},
-        :comments => {:only => [:id, :dog_id, :author, :content]}
+        :comments => {:only => [:id, :dog_id, :author, :content]},
+        :likes => {:only => [:id, :dog_id]}
       })
     end
 
@@ -20,7 +22,8 @@ class DogsController < ApplicationController
       if dog.update(dog_params)
         render json: dogs.to_json(:include => {
           :rating => {:only => [:id, :dog_id, :value]},
-          :comments => {:only => [:id, :dog_id, :author, :content]}
+          :comments => {:only => [:id, :dog_id, :author, :content]},
+          :likes => {:only => [:id, :dog_id]}
         })
       else
       render json: dog.errors, status: :unprocessable_entity

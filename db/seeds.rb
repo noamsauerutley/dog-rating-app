@@ -54,5 +54,11 @@ Dog.all.each do |dog|
 end
 
 adjectives = ["cute", "adorable", "beautiful", "sweet", "intelligent", "playful", "exuberant","goofy","stubborn","protective", "snuggly","playful","loving","intellegent","attractive","smart", "wise", "loyal", "loving", "demanding", "funny", "silly", "perceptive",	"energetic", "loving", "clever", "playful", "hyper", "bouncy", "mischievous", "playful", "curious", "adventuresome", "even-tempered", "mischevious", "sassy", "handsome", "precious", "cuddly", "goofy", "happy", "silly", "hyper", "curious", "playful", "excitable"]
+Dog.all.each do |dog|
+    i  = rand(1..20)
+    i.times do
+        Like.create(dog_id:dog.id)
+    end
+end
 
 puts "Seeded!"
