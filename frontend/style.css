@@ -94,11 +94,6 @@ font-family: 'Patua One', cursive;
   #comments-ul {
     list-style-type: none;
     max-width: 70%;
-<<<<<<< HEAD
-  }
-
-  /* like heart */
-=======
     padding-left: 15%;
     padding-right: 1%;
     margin-left: 40%;
@@ -123,5 +118,4 @@ font-family: 'Patua One', cursive;
     text-decoration: none;
     font-size: 15px;
   }
->>>>>>> staging
 

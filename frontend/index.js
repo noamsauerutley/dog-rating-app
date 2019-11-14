@@ -46,9 +46,6 @@ function createDog(dog) {
 
 }
 
-
-
-
 function addEventListenerToDogImg(dog, dogImg) {
     dogImg.addEventListener("click", () => {
         showDog(dog)
@@ -58,6 +55,7 @@ function addEventListenerToDogImg(dog, dogImg) {
 let showDog = (dog) => {
     // get modal
     let modalContent = document.querySelector("#dog-modal")
+    let dogLikes = dog.likes.length
 
     // clear previous content
     let child = modalContent.lastElementChild;
@@ -71,14 +69,20 @@ let showDog = (dog) => {
     modalImg.src = dog.image_url
 
     // add like button
-    let likeButton = document.createElement("div")
-    likeButton.setAttribute("id",'heart') 
+    let likeButton = document.createElement("button")
+    likeButton.setAttribute("id",'like-button') 
     likeButton.setAttribute("class",'button')
     likeButton.innerText = "Like Me!"
     likeButton.addEventListener("click", () => {
         newLike(dog)
+        dogLikes += 1
+        modalLikes.innerText = `Likes: ${dogLikes}`
         console.log("liked!!")
     })
+    let modalLikes = document.createElement("h3")
+    modalLikes.setAttribute("class", "modal-likes")
+    modalLikes.innerText = `Likes:${dogLikes}`
+    console.log(dog.likes)
 
     // add rating to modal
     let modalRating = document.createElement('h3')
@@ -127,9 +131,10 @@ let showDog = (dog) => {
         let lineBreak1 = document.createElement("br")
         let lineBreak2 = document.createElement("br")
         let lineBreak3 = document.createElement("br")
+        let lineBreak4 = document.createElement("br")
 
 
-        modalContent.append(modalImg, modalRating, ratingInput, lineBreak1, submitButton, lineBreak2, lineBreak3)
+        modalContent.append(modalImg, modalLikes, likeButton, lineBreak4, modalRating, ratingInput, lineBreak1, submitButton, lineBreak2, lineBreak3)
         // modalContent.append(addRating)
         // modalContent.append(addComment)
         newComment(dog, modalContent)
@@ -264,7 +269,7 @@ homeButton.addEventListener("click",() => {allDogs()})
     let mostCommentedDogsButton = document.querySelector("#commented-dogs")
     mostCommentedDogsButton.addEventListener("click",() => {mostCommentedDogs()})
 
-    let newLike = async dog => {
+    let newLike = async (dog) => {
         let response = await fetch('http://localhost:3000/likes', {
             method: "POST",
             headers: {
@@ -276,6 +281,21 @@ homeButton.addEventListener("click",() => {allDogs()})
             })
         })
         let postedLike = await response.json()
-        console.log(postedLike)
-        console.log(dog)
-    }   
+    }  
+    
+    let mostPopularDogs = async () => {
+        let response = await fetch("http://localhost:3000/dogs")
+        let dogs = await response.json()
+        let sortedDogs = dogs.sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
+
+        clearDogs()
+
+        sortedDogs.forEach((dog) => {
+           //create dog function
+        createDog(dog)
+        })
+    }
+
+   let mostPopularDogsButton = document.querySelector("#popular-dogs")
+   mostPopularDogsButton.addEventListener("click", () => {mostPopularDogs()})
+

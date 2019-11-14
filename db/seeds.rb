@@ -54,7 +54,10 @@ Dog.all.each do |dog|
 end
 
 Dog.all.each do |dog|
-    Like.create(dog_id:dog.id)
+    i  = rand(1..20)
+    i.times do
+        Like.create(dog_id:dog.id)
+    end
 end
 
 puts "Seeded!"
