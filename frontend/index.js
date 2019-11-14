@@ -167,7 +167,8 @@ let newComment = (dog, modalContent) => {
     // load submit button
     let submitButton = document.createElement("button")
     submitButton.innerText = "Leave a Comment"
-    submitButton.addEventListener("click", () => {
+    submitButton.addEventListener("click", (event) => {
+        event.preventDefault()
         createNewComment(dog, modalContent, authorInput, contentInput)
     })
     let lineBreak1 = document.createElement("br")
@@ -181,10 +182,12 @@ let newComment = (dog, modalContent) => {
     // modalContent.append(content)
 }
 
-function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog) {   
-        submitButton.addEventListener("click", () => {
+        
+function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog) {
+        submitButton.addEventListener("click", (event) => {
+            event.preventDefault()
             let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
-            let newRating = (parseInt(currentRating) + parseInt(ratingInput.value))/2
+            let newRating = (parseInt(dog.rating.value) + parseInt(ratingInput.value))/2
             fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
                 method: "PATCH",
                 headers: {
@@ -200,7 +203,6 @@ function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog
                 modalRating.innerText = `${resObj.value}/10`
             })
         })
- 
 }
 
 let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
