@@ -33,7 +33,7 @@ let allDogs = async () => {
 allDogs()
 
 
-function createDog(dog) {
+let createDog = dog => {
     // create dog image
     let dogImg = document.createElement("img")
     dogImg.className = "dog-img"
@@ -46,7 +46,7 @@ function createDog(dog) {
 
 }
 
-function addEventListenerToDogImg(dog, dogImg) {
+let addEventListenerToDogImg = (dog, dogImg) => {
     dogImg.addEventListener("click", () => {
         showDog(dog)
     })
@@ -83,9 +83,10 @@ let showDog = (dog) => {
     modalLikes.innerText = `Likes:${dogLikes}`
 
     // add rating to modal
+    let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
     let modalRating = document.createElement('h3')
     modalRating.setAttribute("class", "modal-rating")
-    modalRating.innerText = `Rating: ${dog.rating.value}/10`
+    modalRating.innerText = `Rating: ${currentRating}/10`
 
     // add rate dog link to modal
 
@@ -93,22 +94,13 @@ let showDog = (dog) => {
     ratingInput.type = "number"
     ratingInput.setAttribute("class", "rating-input")
     
-    let submitButton = document.createElement("button")
-    submitButton.innerText = "Rate This Dog"
+    let ratingSubmitButton = document.createElement("button")
+    ratingSubmitButton.innerText = "Rate This Dog"
     
     
     //add event listener to addRating
-    addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog)
-    
-    // add comment link to modal
-    // let addComment = document.createElement('h4')
-    // addComment.innerText = "Leave A Comment"
-    
-    // add event listener to addComment
-    // addComment.addEventListener("click", () => {
-        // })
-        
-        
+    addEventListenerToAddRating(ratingInput, ratingSubmitButton, modalRating, dog)
+
         // create comments display
         let commentsUl = document.createElement('ul')
         commentsUl.setAttribute("id", "comments-ul")
@@ -132,9 +124,7 @@ let showDog = (dog) => {
         let lineBreak4 = document.createElement("br")
 
 
-        modalContent.append(modalImg, modalLikes, likeButton, lineBreak4, modalRating, ratingInput, lineBreak1, submitButton, lineBreak2, lineBreak3)
-        // modalContent.append(addRating)
-        // modalContent.append(addComment)
+        modalContent.append(modalImg, modalLikes, likeButton, lineBreak4, modalRating, ratingInput, lineBreak1, ratingSubmitButton, lineBreak2, lineBreak3)
         newComment(dog, modalContent)
         modalContent.append(commentsUl)
 
@@ -142,32 +132,20 @@ let showDog = (dog) => {
 }
 
 let newComment = (dog, modalContent) => {
-    // clear modal content
-    // let child = modalContent.lastElementChild;
-    // while (child) {
-    //     modalContent.removeChild(child);
-    //     child = modalContent.lastElementChild;
-    // }
-
     // load comment form
     // load author input
     let commentForm = document.createElement("form")
     commentForm.setAttribute("class", "comment-form")
-    // let author = document.createElement("div")
-    // let authorLabel = document.createElement("label")
-    // authorLabel.innerText = "Your Name: "
     let authorInput = document.createElement("input")
     authorInput.placeholder = "Your Name"
     
     // load content input
-    // let contentLabel = document.createElement("label")
-    // contentLabel.innerText = "Your Comment: "
     let contentInput = document.createElement("TEXTAREA")
     contentInput.placeholder = "Your Comment"
-    // load submit button
-    let submitButton = document.createElement("button")
-    submitButton.innerText = "Leave a Comment"
-    submitButton.addEventListener("click", (event) => {
+    // load comment submit button
+    let commentSubmitButton = document.createElement("button")
+    commentSubmitButton.innerText = "Leave a Comment"
+    commentSubmitButton.addEventListener("click", (event) => {
         event.preventDefault()
         createNewComment(dog, modalContent, authorInput, contentInput)
     })
@@ -176,32 +154,37 @@ let newComment = (dog, modalContent) => {
     let lineBreak3 = document.createElement("br")
     let lineBreak4 = document.createElement("br")
 
-    commentForm.append(authorInput, lineBreak1, contentInput, lineBreak2, submitButton)
+    commentForm.append(authorInput, lineBreak1, contentInput, lineBreak2, commentSubmitButton)
   
     modalContent.append(commentForm)
-    // modalContent.append(content)
 }
 
         
-function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog) {
+let addEventListenerToAddRating = (ratingInput, submitButton, modalRating, dog) => {
         submitButton.addEventListener("click", (event) => {
             event.preventDefault()
-            let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
-            let newRating = (parseInt(dog.rating.value) + parseInt(ratingInput.value))/2
-            fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    value: newRating
+            if (ratingInput.value.length < 1){
+                alert("Please enter a  rating!");
+                return false;
+            } 
+            else {
+                let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
+                let newRating = (parseInt(currentRating) + parseInt(ratingInput.value))/2
+                fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        value: newRating
+                    })
                 })
-            })
-            .then(r => r.json())
-            .then(resObj => {
-                modalRating.innerText = `${resObj.value}/10`
-            })
+                .then(r => r.json())
+                .then(resObj => {
+                    modalRating.innerText = `${resObj.value}/10`
+                })
+            }
         })
 }
 
