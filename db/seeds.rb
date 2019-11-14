@@ -53,14 +53,11 @@ Dog.all.each do |dog|
     Comment.create(author:Faker::Name.first_name, content:Faker::Movies::PrincessBride.quote, dog_id: dog.id)
 end
 
-<<<<<<< HEAD
 Dog.all.each do |dog|
     i  = rand(1..20)
     i.times do
         Like.create(dog_id:dog.id)
     end
 end
-=======
->>>>>>> staging
 
 puts "Seeded!"
