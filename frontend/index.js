@@ -147,7 +147,17 @@ let newComment = (dog, modalContent) => {
     commentSubmitButton.innerText = "Leave a Comment"
     commentSubmitButton.addEventListener("click", (event) => {
         event.preventDefault()
-        createNewComment(dog, modalContent, authorInput, contentInput)
+        if (typeof authorInput !== "string"){
+            alert("Please enter your name!");
+            return false;
+        } else if (typeof contentInput !== "string"){
+            alert("Please enter a comment!");
+            return false;
+        } else {
+            console.log(authorInput.length)
+            console.log(contentInput.length)
+            createNewComment(dog, modalContent, authorInput, contentInput)
+        }
     })
     let lineBreak1 = document.createElement("br")
     let lineBreak2 = document.createElement("br")
