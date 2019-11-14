@@ -13,7 +13,7 @@
 parsedDogs = JSON.parse(File.read('cuteemergency.json'))
 parsedDogs2 = JSON.parse(File.read('cutestpetdogs.json'))
 parsedDogs3 = JSON.parse(File.read('thedaiiypuppy.json'))
-
+# parsedDogs4 = JSON.parse(File.read('dog_feelings.json'))
 
 newDogs = parsedDogs.select do |dog|
     dog.extend Hashie::Extensions::DeepFind
@@ -50,14 +50,17 @@ Dog.all.each do |dog|
 end
 
 Dog.all.each do |dog|
-    Comment.create(author:Faker::Name.first_name, content:Faker::TvShows::Buffy.quote, dog_id: dog.id)
+    Comment.create(author:Faker::Name.first_name, content:Faker::Movies::PrincessBride.quote, dog_id: dog.id)
 end
 
+<<<<<<< HEAD
 Dog.all.each do |dog|
     i  = rand(1..20)
     i.times do
         Like.create(dog_id:dog.id)
     end
 end
+=======
+>>>>>>> staging
 
 puts "Seeded!"
