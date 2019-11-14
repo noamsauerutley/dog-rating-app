@@ -49,11 +49,43 @@ Dog.all.each do |dog|
     Rating.create(value:rand(10..20), dog_id: dog.id)
 end
 
+adjectives = ["cute", "adorable", "beautiful", "sweet","goofy","attractive", "handsome", "precious", "cuddly", "beloved", "big", "smol", "furry", "fuzzy", "dashing", "good", "gorgeous", "huggable", "perfect", "pretty", "regal", "scruffy", "shiny", "sleek", "soft", "snuggly", "wonderful"]
+
 Dog.all.each do |dog|
-    Comment.create(author:Faker::Name.first_name, content:Faker::Movies::PrincessBride.quote, dog_id: dog.id)
+    i  = rand(2)
+    i.times do
+    Comment.create(author:Faker::Name.first_name, content:"This #{adjectives.sample} pupper goes #{Faker::Creature::Dog.sound}.", dog_id: dog.id)
+    end
 end
 
-adjectives = ["cute", "adorable", "beautiful", "sweet", "intelligent", "playful", "exuberant","goofy","stubborn","protective", "snuggly","playful","loving","intellegent","attractive","smart", "wise", "loyal", "loving", "demanding", "funny", "silly", "perceptive",	"energetic", "loving", "clever", "playful", "hyper", "bouncy", "mischievous", "playful", "curious", "adventuresome", "even-tempered", "mischevious", "sassy", "handsome", "precious", "cuddly", "goofy", "happy", "silly", "hyper", "curious", "playful", "excitable"]
+Dog.all.each do |dog|
+    i  = rand(2)
+    i.times do
+    Comment.create(author:Faker::Name.first_name, content:"I love this #{adjectives.sample} doggo.", dog_id: dog.id)
+    end
+end
+
+Dog.all.each do |dog|
+    i  = rand(2)
+    i.times do
+    Comment.create(author:Faker::Name.first_name, content:"What a #{adjectives.sample} pooch.", dog_id: dog.id)
+    end
+end
+
+Dog.all.each do |dog|
+    i  = rand(2)
+    i.times do
+    Comment.create(author:Faker::Name.first_name, content:Faker::Creature::Dog.meme_phrase, dog_id: dog.id)
+    end
+end
+
+Dog.all.each do |dog|
+    i  = rand(2)
+    i.times do
+    Comment.create(author:Faker::Name.first_name, content:"I would die for this #{adjectives.sample} dog.", dog_id: dog.id)
+    end
+end
+
 Dog.all.each do |dog|
     i  = rand(1..20)
     i.times do

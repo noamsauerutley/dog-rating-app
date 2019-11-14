@@ -169,7 +169,8 @@ let newComment = (dog, modalContent) => {
     // load submit button
     let submitButton = document.createElement("button")
     submitButton.innerText = "Leave a Comment"
-    submitButton.addEventListener("click", () => {
+    submitButton.addEventListener("click", (event) => {
+        event.preventDefault()
         createNewComment(dog, modalContent, authorInput, contentInput)
     })
     let lineBreak1 = document.createElement("br")
@@ -186,7 +187,8 @@ let newComment = (dog, modalContent) => {
 function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog) {
     // addRating.addEventListener("click", () => {
    
-        submitButton.addEventListener("click", () => {
+        submitButton.addEventListener("click", (event) => {
+            event.preventDefault()
             let newRating = (parseInt(dog.rating.value) + parseInt(ratingInput.value))/2
             fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
                 method: "PATCH",
