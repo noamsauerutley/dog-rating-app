@@ -53,5 +53,6 @@ Dog.all.each do |dog|
     Comment.create(author:Faker::Name.first_name, content:Faker::Movies::PrincessBride.quote, dog_id: dog.id)
 end
 
+adjectives = ["cute", "adorable", "beautiful", "sweet", "intelligent", "playful", "exuberant","goofy","stubborn","protective", "snuggly","playful","loving","intellegent","attractive","smart", "wise", "loyal", "loving", "demanding", "funny", "silly", "perceptive",	"energetic", "loving", "clever", "playful", "hyper", "bouncy", "mischievous", "playful", "curious", "adventuresome", "even-tempered", "mischevious", "sassy", "handsome", "precious", "cuddly", "goofy", "happy", "silly", "hyper", "curious", "playful", "excitable"]
 
 puts "Seeded!"
