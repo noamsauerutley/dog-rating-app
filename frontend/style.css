@@ -119,3 +119,12 @@ font-family: 'Patua One', cursive;
     font-size: 15px;
   }
 
+  #like-button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+  
+#like-button:focus{
+    outline: 3px dashed #a2a8d3;
+  }

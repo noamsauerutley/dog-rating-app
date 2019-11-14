@@ -71,18 +71,16 @@ let showDog = (dog) => {
     // add like button
     let likeButton = document.createElement("button")
     likeButton.setAttribute("id",'like-button') 
-    likeButton.setAttribute("class",'button')
+    likeButton.setAttribute("class",'like-button')
     likeButton.innerText = "Like Me!"
     likeButton.addEventListener("click", () => {
         newLike(dog)
         dogLikes += 1
         modalLikes.innerText = `Likes: ${dogLikes}`
-        console.log("liked!!")
     })
     let modalLikes = document.createElement("h3")
     modalLikes.setAttribute("class", "modal-likes")
     modalLikes.innerText = `Likes:${dogLikes}`
-    console.log(dog.likes)
 
     // add rating to modal
     let modalRating = document.createElement('h3')
@@ -183,11 +181,10 @@ let newComment = (dog, modalContent) => {
     // modalContent.append(content)
 }
 
-function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog) {
-    // addRating.addEventListener("click", () => {
-   
+function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog) {   
         submitButton.addEventListener("click", () => {
-            let newRating = (parseInt(dog.rating.value) + parseInt(ratingInput.value))/2
+            let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
+            let newRating = (parseInt(currentRating) + parseInt(ratingInput.value))/2
             fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
                 method: "PATCH",
                 headers: {
@@ -203,7 +200,7 @@ function addEventListenerToAddRating(ratingInput, submitButton, modalRating, dog
                 modalRating.innerText = `${resObj.value}/10`
             })
         })
-    // })
+ 
 }
 
 let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
