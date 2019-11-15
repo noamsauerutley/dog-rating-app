@@ -254,7 +254,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: highest rated
     let topDogs = () => {
-        let sortedDogs = dogs.sort((a, b) => (a.rating.value < b.rating.value) ? 1 : -1)
+        let sortedDogs = [...dogs].sort((a, b) => (a.rating.value < b.rating.value) ? 1 : -1)
 
         clearDogs()
 
@@ -270,7 +270,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: most popular
     let mostPopularDogs = () => {
-        let sortedDogs = dogs.sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
+        let sortedDogs = [...dogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
 
         clearDogs()
 
@@ -285,7 +285,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: most commented
     let mostCommentedDogs =  () => {
-        let sortedDogs = dogs.sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
+        let sortedDogs = [...dogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
 
         clearDogs()
 
