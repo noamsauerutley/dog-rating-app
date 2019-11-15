@@ -243,20 +243,6 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let commentsUl = document.querySelector("#comments-ul")
     commentsUl.append(newCommentLi)
 }   
-    // create like
-    let newLike = async (dog) => {
-        let response = await fetch('http://localhost:3000/likes', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                dog_id: dog.id
-            })
-        })
-        let postedLike = await response.json()
-    }  
 
     // initial load -- displays all fetched dogs
     let loadHome = () => {
@@ -342,6 +328,7 @@ function topFunction() {
 
     // runs initial page load
     loadHome()
+
 }
 // runs the whole thing
 main()
