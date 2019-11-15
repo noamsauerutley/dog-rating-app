@@ -23,6 +23,12 @@ window.onclick = function (event) {
     }
 }
 
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
 // clear dogs helper function
 let clearDogs = () => {
     let child = dogListDiv.lastElementChild;
@@ -247,6 +253,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     // initial load -- displays all fetched dogs
     let loadHome = () => {
         clearDogs()
+        topFunction()
         dogs.forEach((dog) => {
             //create dog function
             createDog(dog)
@@ -262,6 +269,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
         let sortedDogs = [...dogs].sort((a, b) => (a.rating.value < b.rating.value) ? 1 : -1)
 
         clearDogs()
+        topFunction()
 
         sortedDogs.forEach((dog) => {
            //create dog function
@@ -278,6 +286,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
         let sortedDogs = [...dogs].sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1)
 
         clearDogs()
+        topFunction()
 
         sortedDogs.forEach((dog) => {
            //create dog function
@@ -293,6 +302,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
         let sortedDogs = [...dogs].sort((a, b) => (a.comments.length < b.comments.length) ? 1 : -1)
 
         clearDogs()
+        topFunction()
 
         sortedDogs.forEach((dog) => {
            //create dog function
@@ -303,11 +313,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let mostCommentedDogsButton = document.querySelector("#commented-dogs")
     mostCommentedDogsButton.addEventListener("click",mostCommentedDogs)
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+
 
 //Get the button:
 mybutton = document.getElementById("myBtn");
