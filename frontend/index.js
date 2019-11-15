@@ -89,12 +89,12 @@ let showDog = (dog) => {
     likeButton.setAttribute("class",'like-button')
     likeButton.innerText = "♥️"
 
-    likeButton.addEventListener("click", () => {
+    likeButton.addEventListener("mousedown", () => {
         likeButton.classList.add('animated', 'heartBeat')
         newLike(dog)
         dogLikes += 1
         modalLikes.innerText = `Likes: ${dogLikes}`
-        likeButton.addEventListener('animationend', function () { likeButton.classList.remove('animated', 'heartBeat') })
+        likeButton.addEventListener('mouseup', function () { likeButton.classList.remove('animated', 'heartBeat') })
     })
     
     let modalLikes = document.createElement("h3")
