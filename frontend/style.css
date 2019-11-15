@@ -2,10 +2,11 @@ body {
     background-color: #e7eaf6;
     font-family: 'IBM Plex Sans', sans-serif;
     color: #38598b;
+    /* zoom: 80%; */
 }
 
 #dog-list {
-    margin-top: 5%;
+    margin-top: 4rem;
     margin-right: 1%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -22,7 +23,12 @@ body {
   margin-right: 75px;
   margin-left: 0;
   color: #113f67;
-font-family: 'Patua One', cursive;
+  font-family: 'Patua One', cursive;
+  font-size: 2rem;
+}
+
+.navigation {
+  margin-right: 6rem;
 }
 
 .nav-bar-list {
@@ -40,7 +46,6 @@ font-family: 'Patua One', cursive;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
-
 }
 
 .nav-bar-list h1, .nav-bar-list h3:hover {
@@ -185,5 +190,9 @@ font-family: 'Patua One', cursive;
 }
 
 #popular-dogs, #top-dogs {
-  padding-left: 7%;
+  padding-left: 6%;
+}
+
+#commented-dogs {
+  margin-right: 4rem;
 }

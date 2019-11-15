@@ -200,7 +200,7 @@ let addEventListenerToAddRating = (ratingInput, submitButton, modalRating, dog) 
             } 
             else {
                 let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
-                let newRating = (parseInt(currentRating) + parseInt(ratingInput.value))/2
+                let newRating = (parseInt(currentRating) + parseInt((ratingInput.value)/10))
                 fetch(`http://localhost:3000/ratings/${dog.rating.id}`, {
                     method: "PATCH",
                     headers: {
@@ -303,6 +303,11 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let mostCommentedDogsButton = document.querySelector("#commented-dogs")
     mostCommentedDogsButton.addEventListener("click",mostCommentedDogs)
 
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
 //Get the button:
 mybutton = document.getElementById("myBtn");
@@ -319,11 +324,7 @@ function scrollFunction() {
     }
 }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+
 
 
     // runs initial page load
