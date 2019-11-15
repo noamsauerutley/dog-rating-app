@@ -170,10 +170,10 @@ let newComment = (dog, modalContent) => {
     commentSubmitButton.innerText = "Leave a Comment"
     commentSubmitButton.addEventListener("click", (event) => {
         event.preventDefault()
-        if (typeof authorInput.value !== "string"){
+        if (typeof authorInput.value !== "string" || authorInput.value.length < 1){
             alert("Please enter your name!");
             return false;
-        } else if (typeof contentInput.value !== "string"){
+        } else if (typeof contentInput.value !== "string" || authorInput.value.length < 1){
             alert("Please enter a comment!");
             return false;
         } else {
