@@ -248,7 +248,6 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let loadHome = () => {
         clearDogs()
         dogs.forEach((dog) => {
-            console.log(dog)
             //create dog function
             createDog(dog)
         })
