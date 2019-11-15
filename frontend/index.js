@@ -52,6 +52,19 @@ let addEventListenerToDogImg = (dog, dogImg) => {
         showDog(dog)
     })
 }
+let newLike = async (dog) => {
+    let response = await fetch('http://localhost:3000/likes', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            dog_id: dog.id
+        })
+    })
+    let postedLike = await response.json()
+}  
 
 // show modal display function
 let showDog = (dog) => {
@@ -74,15 +87,19 @@ let showDog = (dog) => {
     let likeButton = document.createElement("button")
     likeButton.setAttribute("id",'like-button') 
     likeButton.setAttribute("class",'like-button')
-    likeButton.innerText = "Like Me!"
+    likeButton.innerText = "♥️"
+
     likeButton.addEventListener("click", () => {
+        likeButton.classList.add('animated', 'heartBeat')
         newLike(dog)
         dogLikes += 1
         modalLikes.innerText = `Likes: ${dogLikes}`
+        likeButton.addEventListener('animationend', function () { likeButton.classList.remove('animated', 'heartBeat') })
     })
+    
     let modalLikes = document.createElement("h3")
     modalLikes.setAttribute("class", "modal-likes")
-    modalLikes.innerText = `Likes:${dogLikes}`
+    modalLikes.innerText = `Likes: ${dogLikes}`
 
     // add rating to modal
     let currentRating = (typeof dog.rating.value === "number") ? dog.rating.value : 10
@@ -98,6 +115,7 @@ let showDog = (dog) => {
     
     let ratingSubmitButton = document.createElement("button")
     ratingSubmitButton.innerText = "Rate This Dog"
+    ratingSubmitButton.setAttribute("class", "submit-button")
     
     
     //add event listener to addRating
@@ -147,6 +165,8 @@ let newComment = (dog, modalContent) => {
     contentInput.placeholder = "Your Comment"
     // load comment submit button
     let commentSubmitButton = document.createElement("button")
+    commentSubmitButton.setAttribute("class", "submit-button")
+
     commentSubmitButton.innerText = "Leave a Comment"
     commentSubmitButton.addEventListener("click", (event) => {
         event.preventDefault()
@@ -297,6 +317,28 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     let mostCommentedDogsButton = document.querySelector("#commented-dogs")
     mostCommentedDogsButton.addEventListener("click",mostCommentedDogs)
+
+
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () { scrollFunction() };
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
 
     // runs initial page load
     loadHome()
