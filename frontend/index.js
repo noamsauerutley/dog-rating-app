@@ -10,7 +10,7 @@ let allDogs = async () => {
 }
 // function that runs the whole gosh darn thing
 let main = async () => {
-let dogs = await allDogs()
+const dogs = await allDogs()
 
 // click to turn modal off
 span.onclick = function () {
@@ -25,7 +25,6 @@ window.onclick = function (event) {
 
 // clear dogs helper function
 let clearDogs = () => {
-    
     let child = dogListDiv.lastElementChild;
     while (child) {
         dogListDiv.removeChild(child);
@@ -243,6 +242,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
     let loadHome = () => {
         clearDogs()
         dogs.forEach((dog) => {
+            console.log(dog)
             //create dog function
             createDog(dog)
         })
@@ -250,7 +250,7 @@ let createNewComment = async (dog, modalContent, authorInput, contentInput) => {
 
     // nav bar: home
     let homeButton = document.querySelector("#logo")
-    homeButton.addEventListener("click",() => {loadHome()})
+    homeButton.addEventListener("click", () => loadHome())
 
     // nav bar: highest rated
     let topDogs = () => {
