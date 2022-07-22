@@ -164,7 +164,7 @@ GEM
     thread_safe (0.3.6)
     twurl (0.9.3)
       oauth (~> 0.4)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
